@@ -1,0 +1,26 @@
+{
+  "name": "gvet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Getty Vocabulary Explorer Tool",
+  "license": "",
+  "author": "steventh",
+  "type": "module",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "@primevue/themes": "^4.2.5",
+    "pinia": "^2.3.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.5",
+    "vue": "^3.5.13"
+  }
+}

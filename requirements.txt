@@ -1,0 +1,8 @@
+flask
+flask-sqlalchemy
+flask-login
+flask-cors
+python-dotenv
+# for interacting with http apis
+httpx
+pytest

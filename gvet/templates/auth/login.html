@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-card">
+            <header class="login-card__header">
+                <div class="title">GVET</div>
+                <div class="sub-title">Getty Vocabulary Expert Tool</div>
+                <div class="subtle">v1.0.0</div>
+            </header>
+            <div class="login-card__body">
+                <form method="post">
+
+                    <div class="input-group">
+                        <label>username:</label>
+                        <input type="text" name="username">
+                    </div>
+                    <div class="input-group">
+                        <label>password:</label>
+                        <input type="password" name="password">
+                    </div>
+                    <div>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <div class="login-error">
+                            {% for message in messages %}
+                            <div>{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="actions">
+                        <button class="btn" type="submit">login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

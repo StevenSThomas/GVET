@@ -1,0 +1,124 @@
+/* Global reset for consistent margin, padding, and box-sizing across browsers */
+:root {
+    --sans-serif: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
+    --primary: #1a47b8;
+    --primary-light: #4774e5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--sans-serif);
+    font-size: 1rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #3a3a3a;
+    line-height: 1.5;
+}
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.login-card__header {
+    padding: 50px 72px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-card__body {
+    padding: 20px 72px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-error {
+    margin: 10px 0;
+    color: #B71C1C;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 36px;
+    color: var(--primary);
+}
+
+.sub-title {
+    font-size: 1rem;
+    color: #666;
+}
+
+.subtle {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #898989;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: var(--sans-serif);
+    font-size: 1rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.actions .btn {
+    padding: 10px 20px;
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.actions .btn:hover {
+    background-color: var(--primary-light);
+}

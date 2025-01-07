@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% for subject in subjects %}
+<div>
+    <h2>{{subject.label}}</h2>
+</div>
+<div>{{subject.id}}</div>
+<div>{{subject.type}}</div>
+<div>{{subject.note}}</div>
+{% endfor %}
+{% endblock %}
