@@ -1,29 +1,17 @@
-<script>
-import "primeicons/primeicons.css"
-import Button from "primevue/button"
-import Hello from "./components/hello.vue"
-import {useStore} from "./store.js"
-import { defineComponent } from "vue"
+<script setup>
+import { isLoading } from "./api.js";
+import { computed } from "vue";
 
-export default defineComponent({
-    setup(){
-        const store = useStore();
-        store.fetchFacets();
-        return {store};
+import "primeicons/primeicons.css";
+import ProgressBar from "primevue/progressbar";
+import Explorer from "./views/Explorer.vue";
 
-    },
-    components: {
-        Button,
-        Hello
-    }
+const progressBarMode = computed(() => {
+    if (isLoading.value) return "indeterminate";
+    return null;
 });
 </script>
-
 <template>
- <div>
-    <section v-for="facet in store.facets"> 
-        <div>{{ facet.label }}</div>
-        <p style="padding:20px">{{ facet.note }}</p>
-    </section>
- </div>
+    <ProgressBar :mode="progressBarMode" style="height: 6px"></ProgressBar>
+    <Explorer />
 </template>

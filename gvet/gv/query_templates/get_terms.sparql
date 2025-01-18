@@ -1,0 +1,10 @@
+   select ?label ?language ?type ?part_of_speech  WHERE {
+        BIND(@subject_id as ?s)
+        values ?pred {xl:prefLabel xl:altLabel}
+        ?s ?pred ?l.
+        bind (if(exists{?s gvp:prefLabelGVP ?l},"gvp_preferred",if(?pred=xl:prefLabel,"preferred","alternative")) as ?type)
+        ?l xl:literalForm ?label.
+        optional {?l dct:language [gvp:prefLabelGVP [xl:literalForm ?language]]}
+        optional {?l gvp:displayOrder ?ord}
+        optional {?l gvp:termPOS [skos:prefLabel ?part_of_speech]}           
+        } order by ?ord

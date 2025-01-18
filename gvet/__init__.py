@@ -1,9 +1,16 @@
 import os
-from flask import Flask, render_template, send_from_directory
-from flask_cors import CORS
 
-from flask_login import login_required, current_user
-from gvet.gvp.services import QueryService
+from flask import Flask, redirect, render_template, url_for
+from flask_cors import CORS
+from flask_login import login_required
+
+
+def create_default_user():
+    from .models import User
+
+    default_user = User.query.filter_by(username="getty").first()
+    if not default_user:
+        User.create("getty", "getty", "JP Getty")
 
 
 def create_app(test_config=None) -> Flask:
@@ -29,24 +36,29 @@ def create_app(test_config=None) -> Flask:
     db.init_app(app)
     with app.app_context():
         db.create_all()
+        create_default_user()
 
     # register blueprints
     from .auth import auth
-    from .api import api
+    from .rest_api import rest_api
 
     app.register_blueprint(auth)
-    app.register_blueprint(api)
+    app.register_blueprint(rest_api)
 
-    @app.route("/")
+    @app.route(
+        "/",
+    )
     @login_required
     def index():
-        return render_template("index.html")
+        return redirect("/gvet/")
 
-    @app.route("/facets")
+    @app.route("/gvet/", defaults={"path": ""})
+    @app.route("/gvet/<path:path>")
     @login_required
-    def facets():
-        qs = QueryService()
-        facets = qs.get_facets()
-        return render_template("subjects.html", subjects=facets)
+    def gvet(path):
+        return render_template(
+            "index.html",
+            rest_api_base=url_for("rest_api.index"),
+        )
 
     return app

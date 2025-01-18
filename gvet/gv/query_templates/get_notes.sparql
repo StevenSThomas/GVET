@@ -1,0 +1,7 @@
+  select ?text ?language  WHERE {
+        BIND(@subject_id as ?s)
+        ?s skos:scopeNote ?n.
+        ?n rdf:value ?text.
+        optional {?n dcterms:language [gvp:prefLabelGVP [xl:literalForm ?language]]}.
+        optional {?n gvp:displayOrder ?ord}
+        } order by ?ord

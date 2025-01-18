@@ -21,10 +21,10 @@ export default defineConfig({
           if (/woff|woff2|ttf/i.test(extType)) {
             extType = 'fonts';
           }
-          return `assets/${extType}/[name][extname]`;
+          return `bundles/${extType}/[name][extname]`;
         },
-        chunkFileNames: 'assets/js/[name].js',
-        entryFileNames: 'assets/js/[name].js',
+        chunkFileNames: 'bundles/js/[name].js',
+        entryFileNames: 'bundles/js/[name].js',
       },
     }
   },

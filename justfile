@@ -1,16 +1,19 @@
-server-dev:
-    flask --app gvet run --debug
-    
-server-test:
+test:
+    pytest -m "not integration"
+
+full-test:
     pytest
 
+start:
+    flask --app gvet run --debug
+
+
 [working-directory:"client"]
-client-dev:
+start-client:
     npm run dev
 
 [working-directory:"client"]
 build:
     npm run build
-    rm -rf ../gvet/static/assets
-    cp -r ./dist/assets ../gvet/static
-
+    rm -rf ../gvet/static/bundles
+    cp -r ./dist/bundles ../gvet/static

@@ -1,0 +1,12 @@
+select ?scheme_prefix ?identifier ?name ?record_type {
+  ?s gvp:broaderPreferred @subject_id;
+    skos:inScheme aat:;
+    gvp:prefLabelGVP/xl:literalForm ?name;
+    dc:identifier ?identifier;
+          skos:inScheme [vann:preferredNamespacePrefix ?scheme_prefix];
+          a ?typ.
+  ?typ rdfs:subClassOf gvp:Subject;
+       rdfs:label ?record_type.
+  filter (?typ != gvp:Subject).
+  optional {?s gvp:displayOrder ?ord}
+  } order by ?ord

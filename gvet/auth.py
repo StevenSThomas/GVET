@@ -1,6 +1,7 @@
-from flask import Blueprint, request, flash, redirect, url_for, render_template
-from gvet.models import User, AuthenticationError
-from flask_login import login_user, login_required, logout_user, LoginManager
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import LoginManager, login_required, login_user, logout_user
+
+from gvet.models import AuthenticationError, User
 
 # Setup the 'auth' blueprint
 _login_manager = LoginManager()
@@ -42,6 +43,7 @@ def login_post():
 
 
 @auth.route("/logout")
+@auth.route("/logout/")
 @login_required
 def logout():
     logout_user()

@@ -1,0 +1,10 @@
+select  ?scheme_prefix ?identifier ?record_type ?name ?note where {
+    BIND(@id as ?subject)
+    ?subject dc:identifier ?identifier;
+        skos:inScheme [vann:preferredNamespacePrefix ?scheme_prefix];
+        gvp:prefLabelGVP/xl:literalForm ?name;
+        a ?typ.
+     ?typ rdfs:subClassOf gvp:Subject; rdfs:label ?record_type.
+        filter (?typ != gvp:Subject).
+    optional {?subject skos:scopeNote [dct:language gvp_lang:en; rdf:value ?note]}
+}

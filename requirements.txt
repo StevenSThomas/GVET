@@ -6,3 +6,4 @@ python-dotenv
 # for interacting with http apis
 httpx
 pytest
+pytest-spec

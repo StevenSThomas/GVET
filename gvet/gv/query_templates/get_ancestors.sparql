@@ -1,0 +1,10 @@
+select ?scheme_prefix ?identifier ?name ?record_type {
+  @subject_id gvp:broaderPreferredExtended ?parent.
+  ?parent gvp:prefLabelGVP/xl:literalForm ?name.
+  ?parent dc:identifier ?identifier;
+          skos:inScheme [vann:preferredNamespacePrefix ?scheme_prefix];
+          a ?typ.
+  ?typ rdfs:subClassOf gvp:Subject; 
+       rdfs:label ?record_type.
+        filter (?typ != gvp:Subject).
+  OPTIONAL {?parent gvp:broaderPreferred ?grandParent}}

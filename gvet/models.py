@@ -1,6 +1,9 @@
+"""Database Models"""
+
 from flask_login import UserMixin
-from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+from werkzeug.security import check_password_hash, generate_password_hash
 
 db = SQLAlchemy()
 
@@ -17,6 +20,14 @@ class InvalidPassword(AuthenticationError):
     pass
 
 
+class CachedSubject(db.Model):
+    """A cached instance of a subject"""
+
+    id = db.Column(db.String(16), primary_key=True)
+    created = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    data = db.Column(db.JSON)
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True)
@@ -27,11 +38,10 @@ class User(UserMixin, db.Model):
     def create(cls, username: str, password: str, display_name: str) -> "User":
         """Create a new user
 
-                Encrypts a the password for storage
+        Encrypts a the password for storage
 
-                Raises:
-                  AttributeError: if user already exists
-        ß
+        Raises:
+          AttributeError: if user already exists
         """
         user = User.query.filter_by(username=username).first()
         if user:

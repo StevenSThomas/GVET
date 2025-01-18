@@ -1,4 +1,11 @@
 [tool.pytest.ini_options]
-testpaths = [
-    "tests",
-]
+addopts = "--spec"
+testpaths = ["tests"]
+markers = ["integration"]
+
+[tool.pyright]
+venvPath = "."
+venv = "venv"
+
+[tool.ruff]
+exclude = ["venv", "client"]
